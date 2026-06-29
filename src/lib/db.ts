@@ -37,32 +37,42 @@ function generateUUID(): string {
   });
 }
 
-// Helper to ensure local database file exists
+// Helper to ensure local database file exists (wrapped in safe try/catch for read-only environments)
 function ensureLocalDb() {
-  if (!fs.existsSync(LOCAL_DB_DIR)) {
-    fs.mkdirSync(LOCAL_DB_DIR, { recursive: true });
-  }
-  if (!fs.existsSync(LOCAL_DB_PATH)) {
-    fs.writeFileSync(LOCAL_DB_PATH, JSON.stringify([], null, 2), "utf-8");
-  }
-}
-
-// Read bookings from local file
-function getLocalBookings(): Booking[] {
-  ensureLocalDb();
   try {
-    const data = fs.readFileSync(LOCAL_DB_PATH, "utf-8");
-    return JSON.parse(data) as Booking[];
+    if (!fs.existsSync(LOCAL_DB_DIR)) {
+      fs.mkdirSync(LOCAL_DB_DIR, { recursive: true });
+    }
+    if (!fs.existsSync(LOCAL_DB_PATH)) {
+      fs.writeFileSync(LOCAL_DB_PATH, JSON.stringify([], null, 2), "utf-8");
+    }
   } catch (err) {
-    console.error("Error reading local db file, returning empty array:", err);
-    return [];
+    console.warn("Local storage directory creation failed (likely read-only deployment environment):", err);
   }
 }
 
-// Write bookings to local file
+// Read bookings from local file safely
+function getLocalBookings(): Booking[] {
+  try {
+    ensureLocalDb();
+    if (fs.existsSync(LOCAL_DB_PATH)) {
+      const data = fs.readFileSync(LOCAL_DB_PATH, "utf-8");
+      return JSON.parse(data) as Booking[];
+    }
+  } catch (err) {
+    console.warn("Could not read local file database:", err);
+  }
+  return [];
+}
+
+// Write bookings to local file safely
 function saveLocalBookings(bookings: Booking[]) {
-  ensureLocalDb();
-  fs.writeFileSync(LOCAL_DB_PATH, JSON.stringify(bookings, null, 2), "utf-8");
+  try {
+    ensureLocalDb();
+    fs.writeFileSync(LOCAL_DB_PATH, JSON.stringify(bookings, null, 2), "utf-8");
+  } catch (err) {
+    console.warn("Could not save to local file database (read-only environment):", err);
+  }
 }
 
 export async function getBookings(): Promise<Booking[]> {
