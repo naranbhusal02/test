@@ -39,7 +39,7 @@ const pillars = [
 
 export default function About() {
   return (
-    <section id="about" className="bg-[#121212] py-24 lg:py-32 relative overflow-hidden">
+    <section id="about" className="bg-cream dark:bg-[#121212] py-24 lg:py-32 relative overflow-hidden transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
         
         {/* Header */}
@@ -47,7 +47,7 @@ export default function About() {
           <span className="inline-block text-gold/70 text-xs tracking-[0.5em] uppercase font-sans mb-4 font-medium">
             Our Ecosystem
           </span>
-          <h2 className="font-serif text-3xl md:text-5xl text-cream font-light leading-tight">
+          <h2 className="font-serif text-3xl md:text-5xl text-charcoal-dark dark:text-cream font-light leading-tight transition-colors duration-500">
             Four Pillars of the
             <span className="block italic text-gold font-light mt-1 font-serif">Gentleman's Lifestyle</span>
           </h2>
@@ -70,7 +70,7 @@ export default function About() {
                   e.preventDefault();
                   document.querySelector(p.href)?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="group relative h-80 overflow-hidden rounded-xl border border-gold/15 bg-[#181818] hover:border-gold/40 transition-all duration-500 hover:shadow-lg flex flex-col justify-end p-5"
+                className="group relative h-80 overflow-hidden rounded-xl border border-gold/15 bg-white dark:bg-[#181818] hover:border-gold/40 transition-all duration-500 hover:shadow-lg flex flex-col justify-end p-5"
               >
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
@@ -79,8 +79,8 @@ export default function About() {
                     alt={p.title}
                     className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/50 to-transparent" />
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-all duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-cream via-cream/50 dark:from-[#121212] dark:via-[#121212]/50 to-transparent transition-colors duration-500" />
+                  <div className="absolute inset-0 bg-black/10 dark:bg-black/40 group-hover:bg-black/25 transition-all duration-300" />
                 </div>
 
                 {/* Content Details */}
@@ -91,10 +91,10 @@ export default function About() {
                   <span className="text-gold/80 text-[8px] tracking-[0.2em] uppercase font-sans font-semibold">
                     {p.subtitle}
                   </span>
-                  <h3 className="font-serif text-xl text-cream font-light mt-1 mb-2">
+                  <h3 className="font-serif text-xl text-charcoal-dark dark:text-cream font-light mt-1 mb-2 transition-colors duration-500">
                     {p.title}
                   </h3>
-                  <p className="text-cream/60 text-[10px] sm:text-xs leading-relaxed font-sans tracking-wide">
+                  <p className="text-charcoal-dark/60 dark:text-cream/60 text-[10px] sm:text-xs leading-relaxed font-sans tracking-wide transition-colors duration-500">
                     {p.desc}
                   </p>
                 </div>

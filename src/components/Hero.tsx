@@ -18,7 +18,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative h-screen min-h-[600px] overflow-hidden flex items-center justify-center bg-[#121212]">
+    <section className="relative h-screen min-h-[600px] overflow-hidden flex items-center justify-center bg-cream dark:bg-[#121212] transition-colors duration-500">
       {/* Background with Parallax and Soft Luxury Overlay */}
       <div ref={videoRef} className="absolute inset-0 will-change-transform scale-105">
         <img
@@ -26,7 +26,7 @@ export default function Hero() {
           alt="Premium Gentlemen's Room space"
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-[#121212]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-cream dark:from-black/80 dark:via-black/40 dark:to-[#121212] transition-colors duration-500" />
       </div>
 
       {/* Main Content */}
@@ -38,13 +38,13 @@ export default function Hero() {
         </span>
 
         {/* Minimalist Headline */}
-        <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl text-cream font-light leading-none tracking-tight mb-8">
+        <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl text-charcoal-dark dark:text-cream font-light leading-none tracking-tight mb-8 transition-colors duration-500">
           Crafting
           <span className="block italic text-gold font-light mt-1 font-serif">Confidence</span>
         </h1>
 
         {/* Subtitle */}
-        <p className="font-sans text-cream/70 text-sm md:text-base tracking-widest max-w-xl mx-auto mb-12 uppercase leading-relaxed">
+        <p className="font-sans text-charcoal-dark/70 dark:text-cream/70 text-sm md:text-base tracking-widest max-w-xl mx-auto mb-12 uppercase leading-relaxed transition-colors duration-500">
           A sanctuary of grooming, style, and refinement for the modern gentleman.
         </p>
 

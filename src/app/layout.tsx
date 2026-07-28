@@ -1,6 +1,8 @@
 import { Cormorant_Garamond, Montserrat } from 'next/font/google';
 import './globals.css';
 import type { Metadata } from 'next';
+import { ThemeProvider } from '../components/ThemeContext';
+import { BookingProvider } from '../components/BookingWizard';
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -39,7 +41,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${cormorant.variable} ${montserrat.variable}`}>
       <body>
-        {children}
+        <ThemeProvider>
+          <BookingProvider>
+            {children}
+          </BookingProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

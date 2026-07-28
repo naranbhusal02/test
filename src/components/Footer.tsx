@@ -37,12 +37,12 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0a0a0a] border-t border-gold/10 text-cream/40 py-8 relative">
+    <footer className="bg-white dark:bg-[#0a0a0a] border-t border-gold/10 text-charcoal-dark/40 dark:text-cream/40 py-8 relative transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4">
         
         {/* Left: Brand Details */}
         <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
-          <p className="text-cream text-xs font-serif tracking-widest uppercase font-semibold">
+          <p className="text-charcoal-dark dark:text-cream text-xs font-serif tracking-widest uppercase font-semibold transition-colors duration-500">
             GENTLEMEN'S ROOM
           </p>
           <span className="hidden sm:inline text-gold/20">|</span>
@@ -61,7 +61,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.name}
-                className="text-cream/30 hover:text-gold transition-colors duration-300"
+                className="text-charcoal-dark/30 dark:text-cream/30 hover:text-gold transition-colors duration-300"
               >
                 {s.svg}
               </a>

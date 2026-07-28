@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X, Sparkles, Moon, Sun } from "lucide-react";
 import { useBooking } from "./BookingWizard";
+import { useTheme } from "./ThemeContext";
 
 const links = [
   { label: "Salon", href: "#salon" },
@@ -17,6 +18,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const { openBooking } = useBooking();
+  const { theme, toggleTheme } = useTheme();
 
   // Scroll threshold detection for shrinking and background blur styling
   useEffect(() => {
@@ -77,7 +79,7 @@ export default function Navbar() {
       <div
         className={`mx-auto max-w-7xl rounded-full transition-all duration-500 px-6 lg:px-10 h-16 flex items-center justify-between ${
           scrolled
-            ? "bg-[#181818]/85 backdrop-blur-lg border border-gold/15 shadow-[0_4px_30px_rgba(0,0,0,0.5)] scale-[0.98] sm:scale-100"
+            ? "bg-white/85 dark:bg-[#181818]/85 backdrop-blur-lg border border-gold/15 shadow-[0_4px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)] scale-[0.98] sm:scale-100"
             : "bg-transparent border border-transparent"
         }`}
       >
@@ -110,7 +112,9 @@ export default function Navbar() {
               className={`font-sans text-[11px] tracking-[0.2em] uppercase transition-all duration-300 relative group py-1.5 ${
                 activeSection === l.href
                   ? "text-gold font-medium"
-                  : "text-cream/70 hover:text-gold"
+                  : !scrolled
+                    ? "text-white/80 hover:text-gold"
+                    : "text-charcoal-dark/70 dark:text-cream/70 hover:text-gold"
               }`}
             >
               {l.label}
@@ -123,11 +127,27 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Book Now Button */}
-        <div className="flex items-center gap-4">
+        {/* Book Now Button & Toggle */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={toggleTheme}
+            className={`p-2 rounded-full border transition-all duration-300 ${
+              !scrolled
+                ? "border-white/20 hover:border-white/60 text-white"
+                : "border-gold/20 hover:border-gold/60 text-gold"
+            }`}
+            aria-label="Toggle theme"
+          >
+            {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
+          </button>
+
           <button
             onClick={() => openBooking()}
-            className="hidden sm:flex px-5 py-2 border border-gold text-gold text-[10px] tracking-[0.2em] uppercase font-sans font-semibold hover:bg-gold hover:text-[#121212] transition-all duration-300 items-center gap-1.5"
+            className={`hidden sm:flex px-5 py-2 border text-[10px] tracking-[0.2em] uppercase font-sans font-semibold transition-all duration-300 items-center gap-1.5 ${
+              !scrolled
+                ? "border-white text-white hover:bg-white hover:text-[#121212]"
+                : "border-gold text-gold hover:bg-gold hover:text-[#121212]"
+            }`}
           >
             <Sparkles size={11} />
             Book Now
@@ -135,7 +155,9 @@ export default function Navbar() {
 
           {/* Mobile Toggle Button */}
           <button
-            className="md:hidden text-cream/80 hover:text-gold transition-colors p-2"
+            className={`md:hidden transition-colors p-2 ${
+              !scrolled ? "text-white/90" : "text-charcoal-dark/80 dark:text-cream/80"
+            } hover:text-gold`}
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
           >
@@ -146,7 +168,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer Overlay */}
       <div
-        className={`md:hidden absolute top-20 left-4 right-4 bg-[#181818]/95 backdrop-blur-xl border border-gold/15 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-500 overflow-hidden ${
+        className={`md:hidden absolute top-20 left-4 right-4 bg-white/95 dark:bg-[#181818]/95 backdrop-blur-xl border border-gold/15 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-500 overflow-hidden ${
           open ? "max-h-96 opacity-100 py-6" : "max-h-0 opacity-0 pointer-events-none"
         }`}
       >
@@ -156,10 +178,10 @@ export default function Navbar() {
               key={l.href}
               onClick={() => handleNav(l.href)}
               style={{ transitionDelay: `${index * 50}ms` }}
-              className={`text-left font-sans text-xs tracking-[0.2em] uppercase py-1 border-b border-white/5 transition-all duration-300 ${
+              className={`text-left font-sans text-xs tracking-[0.2em] uppercase py-1 border-b border-charcoal/5 dark:border-white/5 transition-all duration-300 ${
                 open ? "translate-x-0 opacity-100" : "-translate-x-4 opacity-0"
               } ${
-                activeSection === l.href ? "text-gold font-medium pl-2 border-gold/20" : "text-cream/70 hover:text-gold"
+                activeSection === l.href ? "text-gold font-medium pl-2 border-gold/20" : "text-charcoal-dark/70 dark:text-cream/70 hover:text-gold"
               }`}
             >
               {l.label}

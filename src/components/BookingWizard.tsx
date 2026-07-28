@@ -181,20 +181,20 @@ export const BookingWizard: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-      <div className="relative w-full max-w-lg bg-[#181818] border border-gold/15 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/80 backdrop-blur-md transition-colors duration-500">
+      <div className="relative w-full max-w-lg bg-cream dark:bg-[#181818] border border-gold/15 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] transition-colors duration-500">
         
         {/* Header */}
         <div className="p-6 border-b border-gold/10 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Sparkles className="text-gold w-4 h-4" />
-            <h3 className="font-serif text-lg text-cream font-medium tracking-wide">
+            <h3 className="font-serif text-lg text-charcoal-dark dark:text-cream font-medium tracking-wide transition-colors duration-500">
               {step === 4 ? "Booking Confirmed" : "Book An Experience"}
             </h3>
           </div>
           <button 
             onClick={closeBooking}
-            className="text-cream/50 hover:text-gold transition-colors p-1"
+            className="text-charcoal-dark/50 dark:text-cream/50 hover:text-gold transition-colors p-1"
           >
             <X size={18} />
           </button>
@@ -202,19 +202,19 @@ export const BookingWizard: React.FC = () => {
 
         {/* Error alert banner */}
         {error && (
-          <div className="px-6 py-3 bg-red-900/30 border-b border-red-500/20 text-red-200 text-xs font-sans tracking-wide">
+          <div className="px-6 py-3 bg-red-900/10 dark:bg-red-900/30 border-b border-red-500/20 text-red-600 dark:text-red-200 text-xs font-sans tracking-wide transition-colors duration-500">
             {error}
           </div>
         )}
 
         {/* Step Indicator */}
         {step < 4 && (
-          <div className="bg-[#121212] px-6 py-3 border-b border-gold/5 flex justify-between items-center text-[10px] tracking-widest font-sans text-cream/40 uppercase">
+          <div className="bg-white/50 dark:bg-[#121212] px-6 py-3 border-b border-gold/5 flex justify-between items-center text-[10px] tracking-widest font-sans text-charcoal-dark/40 dark:text-cream/40 uppercase transition-colors duration-500">
             <span>Step {step} of 3</span>
             <div className="flex gap-1">
-              <div className={`w-6 h-1 rounded-full ${step >= 1 ? "bg-gold" : "bg-white/10"}`} />
-              <div className={`w-6 h-1 rounded-full ${step >= 2 ? "bg-gold" : "bg-white/10"}`} />
-              <div className={`w-6 h-1 rounded-full ${step >= 3 ? "bg-gold" : "bg-white/10"}`} />
+              <div className={`w-6 h-1 rounded-full ${step >= 1 ? "bg-gold" : "bg-charcoal/10 dark:bg-white/10"}`} />
+              <div className={`w-6 h-1 rounded-full ${step >= 2 ? "bg-gold" : "bg-charcoal/10 dark:bg-white/10"}`} />
+              <div className={`w-6 h-1 rounded-full ${step >= 3 ? "bg-gold" : "bg-charcoal/10 dark:bg-white/10"}`} />
             </div>
           </div>
         )}
@@ -225,13 +225,13 @@ export const BookingWizard: React.FC = () => {
           {/* STEP 1: SERVICE SELECTION */}
           {step === 1 && (
             <div className="space-y-6">
-              <p className="text-cream/60 text-xs uppercase tracking-wider mb-2">Select a Service Offering</p>
+              <p className="text-charcoal-dark/60 dark:text-cream/60 text-xs uppercase tracking-wider mb-2 transition-colors duration-500">Select a Service Offering</p>
               <div className="space-y-4">
                 {serviceDirectory.map((category) => {
                   const Icon = category.icon;
                   return (
                     <div key={category.dept} className="space-y-2">
-                      <div className="flex items-center gap-2 text-gold font-serif text-sm tracking-widest uppercase border-b border-white/5 pb-1">
+                      <div className="flex items-center gap-2 text-gold font-serif text-sm tracking-widest uppercase border-b border-charcoal/5 dark:border-white/5 pb-1 transition-colors duration-500">
                         <Icon className="w-4 h-4 text-gold/60" />
                         <span>{category.dept}</span>
                       </div>
@@ -240,7 +240,7 @@ export const BookingWizard: React.FC = () => {
                           <button
                             key={serv}
                             onClick={() => handleServiceSelect(category.dept, serv)}
-                            className="text-left px-4 py-3 bg-[#121212] border border-white/5 hover:border-gold/30 rounded-lg text-cream/80 hover:text-cream text-xs transition-all duration-300 flex items-center justify-between group"
+                            className="text-left px-4 py-3 bg-white dark:bg-[#121212] border border-charcoal/5 dark:border-white/5 hover:border-gold/30 rounded-lg text-charcoal-dark/80 dark:text-cream/80 hover:text-charcoal-dark dark:hover:text-cream text-xs transition-all duration-300 flex items-center justify-between group shadow-sm dark:shadow-none"
                           >
                             <span>{serv}</span>
                             <ArrowLeft className="w-3.5 h-3.5 rotate-180 text-gold/30 group-hover:text-gold transition-colors" />
@@ -265,28 +265,28 @@ export const BookingWizard: React.FC = () => {
                 <ArrowLeft size={10} /> Back to services
               </button>
 
-              <div className="bg-[#121212] p-4 rounded-xl border border-white/5">
+              <div className="bg-white dark:bg-[#121212] p-4 rounded-xl border border-charcoal/5 dark:border-white/5 transition-colors duration-500">
                 <span className="text-[10px] text-gold/60 tracking-widest uppercase block mb-1">Selected</span>
-                <p className="font-serif text-cream text-base font-light">{service} ({department})</p>
+                <p className="font-serif text-charcoal-dark dark:text-cream text-base font-light transition-colors duration-500">{service} ({department})</p>
               </div>
 
               {/* Date Input */}
               <div className="space-y-2">
-                <label className="text-cream/60 text-xs uppercase tracking-wider block">Choose Date</label>
+                <label className="text-charcoal-dark/60 dark:text-cream/60 text-xs uppercase tracking-wider block transition-colors duration-500">Choose Date</label>
                 <div className="relative">
                   <input
                     type="date"
                     value={date}
                     min={new Date().toISOString().split("T")[0]}
                     onChange={(e) => setDate(e.target.value)}
-                    className="w-full bg-[#121212] border border-white/10 rounded-lg py-3 px-4 text-cream text-sm focus:border-gold focus:outline-none transition-colors"
+                    className="w-full bg-white dark:bg-[#121212] border border-charcoal/10 dark:border-white/10 rounded-lg py-3 px-4 text-charcoal-dark dark:text-cream text-sm focus:border-gold focus:outline-none transition-all duration-500"
                   />
                 </div>
               </div>
 
               {/* Time Slots Grid */}
               <div className="space-y-3">
-                <label className="text-cream/60 text-xs uppercase tracking-wider block">Select Time Slot</label>
+                <label className="text-charcoal-dark/60 dark:text-cream/60 text-xs uppercase tracking-wider block transition-colors duration-500">Select Time Slot</label>
                 <div className="grid grid-cols-3 gap-2">
                   {timeSlots.map((slot) => (
                     <button
@@ -295,7 +295,7 @@ export const BookingWizard: React.FC = () => {
                       className={`py-2.5 rounded-lg border text-xs tracking-wider font-medium transition-all duration-300 ${
                         time === slot
                           ? "bg-gold border-gold text-[#121212]"
-                          : "bg-[#121212] border-white/5 text-cream/70 hover:border-gold/30"
+                          : "bg-white dark:bg-[#121212] border-charcoal/5 dark:border-white/5 text-charcoal-dark/70 dark:text-cream/70 hover:border-gold/30"
                       }`}
                     >
                       {slot}
@@ -326,13 +326,13 @@ export const BookingWizard: React.FC = () => {
                 <ArrowLeft size={10} /> Back to Scheduler
               </button>
 
-              <div className="bg-[#121212] p-4 rounded-xl border border-white/5 space-y-1 text-xs">
-                <div className="flex justify-between text-cream/40">
+              <div className="bg-white dark:bg-[#121212] p-4 rounded-xl border border-charcoal/5 dark:border-white/5 space-y-1 text-xs transition-colors duration-500">
+                <div className="flex justify-between text-charcoal-dark/40 dark:text-cream/40 transition-colors duration-500">
                   <span>SERVICE</span>
                   <span>DATE & TIME</span>
                 </div>
                 <div className="flex justify-between items-start">
-                  <span className="font-serif text-cream text-sm font-light">{service}</span>
+                  <span className="font-serif text-charcoal-dark dark:text-cream text-sm font-light transition-colors duration-500">{service}</span>
                   <span className="text-gold text-right">{date} @ {time}</span>
                 </div>
               </div>
@@ -340,50 +340,50 @@ export const BookingWizard: React.FC = () => {
               {/* Customer Info */}
               <div className="space-y-4">
                 <div className="space-y-1.5">
-                  <label className="text-cream/60 text-[10px] uppercase tracking-wider block">Full Name</label>
+                  <label className="text-charcoal-dark/60 dark:text-cream/60 text-[10px] uppercase tracking-wider block transition-colors duration-500">Full Name</label>
                   <input
                     type="text"
                     required
                     value={name}
                     placeholder="Enter your full name"
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full bg-[#121212] border border-white/10 rounded-lg py-2.5 px-4 text-cream text-sm focus:border-gold focus:outline-none transition-colors"
+                    className="w-full bg-white dark:bg-[#121212] border border-charcoal/10 dark:border-white/10 rounded-lg py-2.5 px-4 text-charcoal-dark dark:text-cream text-sm focus:border-gold focus:outline-none transition-all duration-500"
                   />
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-cream/60 text-[10px] uppercase tracking-wider block">Email Address</label>
+                    <label className="text-charcoal-dark/60 dark:text-cream/60 text-[10px] uppercase tracking-wider block transition-colors duration-500">Email Address</label>
                     <input
                       type="email"
                       required
                       value={email}
                       placeholder="name@example.com"
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full bg-[#121212] border border-white/10 rounded-lg py-2.5 px-4 text-cream text-sm focus:border-gold focus:outline-none transition-colors"
+                      className="w-full bg-white dark:bg-[#121212] border border-charcoal/10 dark:border-white/10 rounded-lg py-2.5 px-4 text-charcoal-dark dark:text-cream text-sm focus:border-gold focus:outline-none transition-all duration-500"
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-cream/60 text-[10px] uppercase tracking-wider block">Phone Number</label>
+                    <label className="text-charcoal-dark/60 dark:text-cream/60 text-[10px] uppercase tracking-wider block transition-colors duration-500">Phone Number</label>
                     <input
                       type="tel"
                       required
                       value={phone}
                       placeholder="+977 98XXXXXXX"
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full bg-[#121212] border border-white/10 rounded-lg py-2.5 px-4 text-cream text-sm focus:border-gold focus:outline-none transition-colors"
+                      className="w-full bg-white dark:bg-[#121212] border border-charcoal/10 dark:border-white/10 rounded-lg py-2.5 px-4 text-charcoal-dark dark:text-cream text-sm focus:border-gold focus:outline-none transition-all duration-500"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-cream/60 text-[10px] uppercase tracking-wider block">Special Requests (Optional)</label>
+                  <label className="text-charcoal-dark/60 dark:text-cream/60 text-[10px] uppercase tracking-wider block transition-colors duration-500">Special Requests (Optional)</label>
                   <textarea
                     rows={3}
                     value={notes}
                     placeholder="Any styling preferences, dietary needs, or tailoring measurements..."
                     onChange={(e) => setNotes(e.target.value)}
-                    className="w-full bg-[#121212] border border-white/10 rounded-lg py-2.5 px-4 text-cream text-sm focus:border-gold focus:outline-none transition-colors resize-none"
+                    className="w-full bg-white dark:bg-[#121212] border border-charcoal/10 dark:border-white/10 rounded-lg py-2.5 px-4 text-charcoal-dark dark:text-cream text-sm focus:border-gold focus:outline-none transition-all duration-500 resize-none"
                   />
                 </div>
               </div>
@@ -411,31 +411,31 @@ export const BookingWizard: React.FC = () => {
               </div>
               
               <div>
-                <h4 className="font-serif text-2xl text-cream font-light">Booking Requested</h4>
-                <p className="text-cream/50 text-xs font-sans tracking-wide mt-2">
+                <h4 className="font-serif text-2xl text-charcoal-dark dark:text-cream font-light transition-colors duration-500">Booking Requested</h4>
+                <p className="text-charcoal-dark/50 dark:text-cream/50 text-xs font-sans tracking-wide mt-2 transition-colors duration-500">
                   We have received your reservation request and are verifying scheduling availability.
                 </p>
               </div>
 
-              <div className="bg-[#121212] border border-gold/10 rounded-xl p-5 max-w-sm mx-auto space-y-4">
+              <div className="bg-white dark:bg-[#121212] border border-gold/10 rounded-xl p-5 max-w-sm mx-auto space-y-4 transition-colors duration-500">
                 <div>
-                  <span className="text-[9px] text-cream/40 uppercase tracking-widest block">Booking Code</span>
+                  <span className="text-[9px] text-charcoal-dark/40 dark:text-cream/40 uppercase tracking-widest block transition-colors duration-500">Booking Code</span>
                   <span className="font-serif text-2xl text-gold font-semibold tracking-widest">{referenceCode}</span>
                 </div>
-                <div className="border-t border-white/5 pt-3 grid grid-cols-2 gap-2 text-left text-xs">
+                <div className="border-t border-charcoal/5 dark:border-white/5 pt-3 grid grid-cols-2 gap-2 text-left text-xs transition-colors duration-500">
                   <div>
-                    <span className="text-[8px] text-cream/40 uppercase tracking-wider block">Service</span>
-                    <span className="text-cream/80">{service}</span>
+                    <span className="text-[8px] text-charcoal-dark/40 dark:text-cream/40 uppercase tracking-wider block transition-colors duration-500">Service</span>
+                    <span className="text-charcoal-dark/80 dark:text-cream/80 transition-colors duration-500">{service}</span>
                   </div>
                   <div>
-                    <span className="text-[8px] text-cream/40 uppercase tracking-wider block">Scheduled</span>
-                    <span className="text-cream/80">{date} @ {time}</span>
+                    <span className="text-[8px] text-charcoal-dark/40 dark:text-cream/40 uppercase tracking-wider block transition-colors duration-500">Scheduled</span>
+                    <span className="text-charcoal-dark/80 dark:text-cream/80 transition-colors duration-500">{date} @ {time}</span>
                   </div>
                 </div>
               </div>
 
-              <p className="text-[10px] text-cream/40 leading-relaxed font-sans max-w-xs mx-auto">
-                An email notification has been dispatched to <span className="text-cream/70 font-semibold">{email}</span>. Please keep this code for reference.
+              <p className="text-[10px] text-charcoal-dark/40 dark:text-cream/40 leading-relaxed font-sans max-w-xs mx-auto transition-colors duration-500">
+                An email notification has been dispatched to <span className="text-charcoal-dark/70 dark:text-cream/70 font-semibold">{email}</span>. Please keep this code for reference.
               </p>
 
               <button
